@@ -6,7 +6,17 @@ build:
     context: .
   local:
     push: false
+test:
+  - image: withnic/skaffold-example
+    structureTests:
+      - ./test/*
 deploy:
   kubectl:
     manifests:
       - k8s-*
+profiles:
+  - name: test
+    test:
+      - image: withnic/skaffold-example
+        structureTests:
+          - ./test/profile_structure_test.yaml
