@@ -7,7 +7,9 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "OK")
+	if _, err := fmt.Fprintf(w, "OK"); err != nil {
+		log.Print("error")
+	}
 }
 
 func main() {
